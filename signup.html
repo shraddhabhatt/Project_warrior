@@ -29,7 +29,7 @@
 </div>
 <div class="container">   
     <div class="row">
-    <form class="col s12" id="signup-form" action="" onsubmit="signup()">
+    <form class="col s12" id="signup-form">
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
@@ -51,6 +51,13 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="username" name="username" type="text" class="validate">
+          <label for="username" required="required" aria-required="true">Username</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
           <i class="material-icons prefix">lock_open</i>
           <input id="password" name="password" type="password" class="validate">
           <label for="password" required="required">Password</label>
@@ -65,7 +72,7 @@
       </div>
       <div class="row">
          <div>
-            <button class="btn waves-effect waves-light z-depth-4" type="submit" name="action">Sign-up<i class="material-icons right">send</i></button>
+            <button class="btn waves-effect waves-light z-depth-4" name="action">Sign-up<i class="material-icons right">send</i></button>
          </div>
       </div>
     </form>

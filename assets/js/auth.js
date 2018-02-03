@@ -26,6 +26,7 @@ $(document).ready(function(){
 	    rules: {
 	      firstname: "required",
 	      lastname: "required",
+	      username: "required",
 	      email: {
 	        required: true,
 	        email: true
@@ -44,6 +45,7 @@ $(document).ready(function(){
 	    messages: {
 	      firstname: "Please enter your firstname",
 	      lastname: "Please enter your lastname",
+	      username: "Create your own username",
 	      password: {
 	        required: "Please provide a password",
 	        minlength: "Your password must be at least 6 characters long"
@@ -58,21 +60,44 @@ $(document).ready(function(){
 	    // Make sure the form is submitted to the destination defined
 	    // in the "action" attribute of the form when valid
 	    submitHandler: function(form) {
-	      form.submit();
-	      signup();
+	    	signup();
 	    }
 	  });
 
-	function signup(){
+	
+});
+function signup(){
 		
 		let email = $("#email").val().trim();
 		let password = $("#password").val().trim();
+		let firstname = $("#first_name").val().trim();
+		let lastname = $("#last_name").val().trim();
+		let username = $("#username").val().trim();
 
 		console.log("email:: "+email+"  password ::: "+password);
-		firebase.auth().createUserWithEmailAndPassword(email, password)
- 					.catch(function (err) {
-   					// Handle errors
-   					console.log("Errors :: "+err);
- 		});
+
+		firebase.auth().createUserWithEmailAndPassword(email, password).then(function(result) {
+			  
+			  var user = firebase.auth().currentUser;
+
+			  user.sendEmailVerification().then(function() {
+
+			  		firebase.database().ref('users/'+username).set({
+   						 firstname: firstname,
+   						 lastname: lastname,
+   						 email: email,
+   						 password: password
+  					});
+
+  				// Email sent.
+			 }).catch(function(error) {
+  				// An error happened.
+  				console.log("Errors when sending email :: "+error);
+			});
+			  // ...
+			}, function (err) {
+   				// Handle errors
+   			console.log("Errors :: "+err);
+
+ 		}).catch();
 	}
-});
