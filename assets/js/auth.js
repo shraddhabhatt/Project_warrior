@@ -68,9 +68,11 @@ $(document).ready(function(){
 		let email = $("#email").val().trim();
 		let password = $("#password").val().trim();
 
+		console.log("email:: "+email+"  password ::: "+password);
 		firebase.auth().createUserWithEmailAndPassword(email, password)
  					.catch(function (err) {
    					// Handle errors
+   					console.log("Errors :: "+err);
  		});
 	}
 });
