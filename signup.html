@@ -8,7 +8,6 @@
     <link rel="icon" href="assets/image/favicon.ico" type="image/ico" sizes="16x16">
 
     <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
-
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
 
@@ -29,12 +28,17 @@
     
      <style type="text/css">
       body
-    {
-      background-image: url("assets/image/bg3.jpeg");
-      opacity: 0.9;
-
-    }
-
+      {
+        background-image: url("assets/image/bg3.jpeg");
+        opacity: 0.9;
+      }
+      input
+      {
+        margin-bottom: -2px;
+      }
+      label{
+        height: 100px;
+      }
       h5,h3,.white-text
       {
         font-weight: 600;
@@ -61,6 +65,11 @@
         padding-top: 10px;
       }
 
+      .input-field
+      {
+        margin: 0px;
+      }
+
       .confirmation-tabs-btn
       {
         position: absolute;
@@ -70,94 +79,94 @@
     
 </head>
 <body>
-  <!-- SIGN IN -->
+  <!-- MAIN CONTAINER-->
   <div class="container white z-depth-2">
     <div class="row">
-      <div id="login" class="col-6 animated slideInUp">
+      
+    <!-- SIGN UP -->
+    <div id="register" class="col-7  animated slideInDown">
+        <form class="col s12" id="signup-form">
+          <div class="form-container p-0">
+            <h3 class="teal-text">Sign Up</h3>
+            <hr>
+            <div class="row">
+              <div class="input-field col m6 m0">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="first_name" name="firstname" type="text" class="validate">
+                <label for="first_name">First Name</label>
+              </div>
+              <div class="input-field col m6 m0">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="last_name" name="lastname" type="text" class="validate">
+                <label for="last_name">Last Name</label>
+              </div>
+            </div>
+            <div class="row">
+               <div class="input-field col s12 m0">
+                  <i class="material-icons prefix">person_pin </i>
+                  <input id="username" name="username" type="text" class="validate">
+                  <label for="username">Username</label>
+                </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m0">
+                    <i class="material-icons prefix">email</i>
+                    <input id="email" name="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12 m0">
+                  <i class="material-icons prefix">lock_outline</i>
+                  <input id="password" name="password" type="password" class="validate">
+                  <label for="password">Password</label>
+              </div>
+              <div class="input-field col s12 m-0">
+                  <i class="material-icons prefix">lock_outline</i>
+                  <input id="password-confirm" name="confirmpassword" type="password" class="validate">
+                  <label for="password-confirm">Password Confirmation</label>
+              </div>
+            </div>
+          <center>
+            <button class="btn waves-effect waves-light teal">Submit</button>
+          </center>
+      </div>
+    </form>
+  </div>
+  <!--SIGN-IN -->
+    <div id="login" class="col-5 animated slideInUp">
         <form class="col s12">
-          <div class="form-container">
+          <div class="form-container p-0">
             <h3 class="teal-text">Sign In</h3>
             <hr>
             <div class="row">
               <div class="input-field col xl12">
                 <i class="material-icons prefix">email</i>
-                <input id="email" type="email" class="validate">
-                <label for="email">Email</label>
+                <input id="email-signin" name="email-signin" type="email" class="validate">
+                <label for="email-signin">Email</label>
               </div>
               </div>
               <div class="row">
               <div class="input-field col s3">
                 <i class="material-icons prefix">lock_outline</i>
-                <input id="password" type="password" class="validate">
-                <label for="password">Password</label>
+                <input id="password-signin" name="password-signin" type="password" class="validate">
+                <label for="password-signin">Password</label>
               </div>
             </div>
             <!-- </div> -->
             <center>
-                <button class="btn waves-effect waves-light teal" type="submit" name="action">Connect</button>
+                <button class="btn waves-effect waves-light teal" id="connect">Connect</button>
                 <br><br>
-                <a href="">Forgotten password?</a>
-                
-                <a href="https://www.facebook.com/"><img src="assets/image/fb1.png" width="250px" height="120px;"></a>
-                <a href="https://www.gmail.com/"><img src="assets/image/google1.png" width="230px" height="50px;"></a>
+                    <a href="">forgot password?</a>
+                <br><br>
+                <div class="mb-3"><img src="assets/image/fb1.png" id="fbsignin" width="240px" height="50px;"></div>
+                <div class="mb-3"><img src="assets/image/google1.png" id="googlesignin" width="240px" height="50px;"></div>
             </center>
           </div>
         </form>
       </div>
-
-    <!-- SIGN UP -->
-    <div id="register" class="col-6  animated slideInDown">
-        <form class="col s12 ">
-          <div class="form-container">
-            <h3 class="teal-text">Sign Up</h3>
-            <hr>
-            <div class="row">
-              <div class="input-field col s6">
-                <i class="material-icons prefix">account_circle</i>
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">First Name</label>
-              </div>
-              <div class="input-field col s6">
-                <i class="material-icons prefix">account_circle</i>
-                <input id="last_name" type="text" class="validate">
-                <label for="last_name">Last Name</label>
-              </div>
-            </div>
-            <div class="row">
-               <div class="input-field col s12">
-                  <i class="material-icons prefix">person_pin </i>
-                  <input id="userId" type="text" class="validate">
-                  <label for="userId">User ID</label>
-                </div>
-                <div class="row">
-                  <div class="input-field col s12">
-                    <i class="material-icons prefix">email</i>
-                    <input id="email" type="email" class="validate">
-                    <label for="email">Email</label>
-                  </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                  <i class="material-icons prefix">lock_outline</i>
-                  <input id="password" type="password" class="validate">
-                  <label for="password">Password</label>
-              </div>
-            <div class="row">
-              <div class="input-field col s12">
-                  <i class="material-icons prefix">lock_outline</i>
-                  <input id="password-confirm" type="password" class="validate">
-                  <label for="password-confirm">Password Confirmation</label>
-              </div>
-            </div>
-          </div>
-          <center>
-            <button class="btn waves-effect waves-light teal" type="submit" name="action">Submit</button>
-          </center>
-      </div>
-    </form>
-  </div>
 </div>
 </div>
+<script src="assets/js/auth.js"></script>
 </body>
 </html>

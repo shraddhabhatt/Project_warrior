@@ -63,9 +63,17 @@ $(document).ready(function(){
 	    	signup();
 	    }
 	  });
-
-	
 });
+function clearform()
+{
+	$("#email").val("");
+	$("#password").val("");
+	$("#first_name").val("");
+	$("#last_name").val("");
+	$("#username").val("");
+	$("#email-signin").val("");
+	$("#password-signin").val("");
+}
 function signup(){
 		
 		let email = $("#email").val().trim();
@@ -88,6 +96,8 @@ function signup(){
    						 email: email,
    						 password: password
   					});
+  					clearform();
+  					window.location.href = "registration.html";
 
   				// Email sent.
 			 }).catch(function(error) {
@@ -95,9 +105,72 @@ function signup(){
   				console.log("Errors when sending email :: "+error);
 			});
 			  // ...
-			}, function (err) {
-   				// Handle errors
-   			console.log("Errors :: "+err);
+			}).catch(function(error) {
+  				// An error happened.
+  			console.log("Errors in authentication :: "+error);
+		});
+ }
+ $("#connect").on("click", function(){
 
- 		}).catch();
-	}
+		console.log("inside connect");
+ 		var user = firebase.auth().currentUser;
+ 		if(user!= null){
+ 			firebase.auth().signOut().then(function() {
+  				// Sign-out successful.
+			}).catch(function(error) {
+  					// An error happened.
+			});
+ 		}
+ 		let email_signin = $("#email-signin").val().trim();
+		let password_signin = $("#password-signin").val().trim();
+ 		firebase.auth().signInWithEmailAndPassword(email_signin, password_signin).then(function(result){
+			
+			console.log("inside connect 1"+result);
+
+			user = firebase.auth().currentUser;
+ 		
+			console.log("current user :: "+user);
+			//clearform();
+			//window.location.href = "options.html";
+
+ 		}).catch(function(error) {
+			  // Handle Errors here.
+			  var errorCode = error.code;
+			  var errorMessage = error.message;
+			  // The email of the user's account used.
+			  var email = error.email;
+			  // The firebase.auth.AuthCredential type that was used.
+			  var credential = error.credential;
+	  		  // ...
+	  		 console.log("ERRORS :: "+ errorCode);
+			
+			});
+ });
+ $("#googlesignin").on("click", function(){
+
+ 		console.log("User Inside!! ");
+ 			var provider = new firebase.auth.GoogleAuthProvider();
+			provider.addScope("profile");
+			provider.addScope("email");
+			firebase.auth().signInWithPopup(provider).then(function(result) {
+			  // This gives you a Google Access Token. You can use it to access the Google API.
+			  var token = result.credential.accessToken;
+			  // The signed-in user info.
+			  var user = result.user;
+
+			  console.log("Auth :: "+user);
+			
+			}).catch(function(error) {
+			  // Handle Errors here.
+			  var errorCode = error.code;
+			  var errorMessage = error.message;
+			  // The email of the user's account used.
+			  var email = error.email;
+			  // The firebase.auth.AuthCredential type that was used.
+			  var credential = error.credential;
+	  		  // ...
+	  		 console.log("ERRORS :: "+ errorCode);
+			
+			});
+	});
+ 	
