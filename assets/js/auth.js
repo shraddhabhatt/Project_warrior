@@ -175,6 +175,9 @@ function signup(){
  	$("#fbsignin").on("click", function() 	{
 
  		var provider = new firebase.auth.FacebookAuthProvider();
+ 		provider.addScope("profile");
+		provider.addScope("email");
+			
  		firebase.auth().signInWithPopup(provider).then(function(result) {
   		// This gives you a Facebook Access Token. You can use it to access the Facebook API.
   		var token = result.credential.accessToken;
