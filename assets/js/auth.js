@@ -193,4 +193,4 @@ function signup(){
   		// ...
   		console.log("FB Erorr:: ":errorMessage);
 		});
- 	})
+ 	});
