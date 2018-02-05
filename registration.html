@@ -2,19 +2,258 @@
 <html lang="en-us">
 
 <head>
-  <!-- Viewport for Media Queries -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>game worrior</title>
+    <title>Parents Registration</title>
+
     <link rel="icon" href="assets/image/favicon.ico" type="image/ico" sizes="16x16">
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"> 
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/coverr.css">
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
     <link rel="stylesheet" href="assets/css/animate.css">
+    
+     <style type="text/css">
+      body
+    {
+      background-image: url("assets/image/backgound.jpg");
+      opacity: 0.9;
+
+    }
+
+    h5,h3,.white-text
+   {
+     font-weight: 600;
+     font-size: 33px;
+     text-align: center;padding: 20px;
+   } 
+      .container
+      {
+        margin-top: 50px;
+        width: 1000px;
+        height: 50%;
+        overflow: scroll;
+      }
+
+      .form-container
+      {
+        padding: 40px;
+        padding-top: 10px;
+      }
+
+      .confirmation-tabs-btn
+      {
+        position: absolute;
+      }
+      .switch{text-align: center;}
+      select{border: 1px solid gray;
+    border-radius: 2px;
+    height: 3rem;width: 50%;margin-left: 50px;}
+     
+    </style>
+    
 </head>
-<body>    
+<body>
+  <!-- SIGN IN -->
+  <div class="container white z-depth-2">
+    <div class="row">
+      <div id="login" class="col-12 animated fadeIn">
+        <form class="col s12" id="registration-form" method="post">
+         <!-- form cointainer -->
+          <div class="form-container">
+            <h3 class="teal-text">2018 Registration</h3>
+            <hr>
+            <!-- first row -->
+            <div class="row"> 
+              <div class="input-field col s6">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="firstName" name="firstname" type="text" class="validate">
+                <label for="firstName">Parent's First Name*</label>
+                </div>
+                <div class="input-field col m6">
+                    <i class="material-icons prefix">account_circle</i>
+                    <input id="lastName" name="lastname" type="text" class="validate">
+                    <label for="lastName">Parent's Last Name*</label>
+                </div>
+              </div>
+              <!-- second row -->
+             <div class="row"> 
+              <div class="input-field col s6">
+                <i class="material-icons prefix">email</i>
+                <input id="emailId" name="email" type="email" class="validate">
+                <label for="email">Email Id</label>
+                </div>
+                <div class="input-field col m6">
+                    <i class="material-icons prefix">phone</i>
+                    <input id="phoneNumber" name="phone" type="tel" class="validate">
+                    <label for="phoneNumber"> Contact Number</label>
+                </div>
+              </div>
+               <!-- Third row -->
+             <div class="row"> 
+              <div class="input-field col s6">
+                <i class="material-icons prefix">child_care</i>
+                <input id="childFirstName" name="childfirstname" type="text" class="validate">
+                <label for="childFirstName">Child’s First Name*</label>
+                </div>
+                <div class="input-field col s6">
+                    <i class="material-icons prefix">child_care</i>
+                    <input id="childLastName" name="childlastname" type="text" class="validate">
+                    <label for="childLastName">Child’s Last Name*</label>
+                </div>
+                
+              </div>
+              <!-- Fourth row -->
+             <div class="row"> 
+                <div class="input-field col m6">
+                    <i class="material-icons prefix">perm_contact_calendar</i>
+                    <input id="dateOfBirth" name="dob" type="text" class="datepicker">
+                    <!-- <input id="dateOfBirth" type="date" class="validate" placeholder="DOB"> -->
+                    <label for="dateOfBirth">Child : Date Of Birth </label>
+                </div>
+               <div class="input-field col m6">
+                    <i class="material-icons prefix">date_range</i>
+                    <input id="playDay" name="playdate" type="text" class="datepicker">
+                    <label for="playDay">Select your play Day </label>
+                </div>
+             </div>
+              <!-- Grades=== -->
+              <div class="row"> 
+              <div class="input-field col m6">
+               <i class="material-icons prefix">school</i>
+                <select id="grade" class="required" name="grades">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="0">PreK</option>
+                    <option value="1">Grade 1</option>
+                    <option value="2">Grade 2</option>
+                    <option value="3">Grade 3</option>
+                    <option value="4">Grade 4</option>
+                    <option value="5">Grade 5</option>
+                    <option value="6">Grade 6</option>
+                    <option value="7">Grade 7</option>
+                    <option value="8">Grade 8</option>
+                    <option value="9">Grade 9</option>
+                    <option value="10">Grade 10</option>
+                    <option value="11">Grade 11</option>
+                    <option value="12">Grade 12</option>
+                  </select>
+                  <label>Grade Level?*</label>
+              </div>
+                        
+                <!-- city -->
+              <div class="input-field col m6">
+                <i class="material-icons prefix">location_city</i>
+                 <select id="location" class="required" name="location">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Portsmouth">Portsmouth</option>
+                    <option value="Durham">Durham</option>
+                    <option value="Dover">Dover</option>
+                    <option value="Derry">Derry</option>
+                    <option value="New Market">New Market</option>
+                 </select>
+                 <label>Select City</label>
+               </div>
+              </div>
+                 <!-- child Speed -->
+                 <i class="material-icons prefix">directions_run</i>
+                <label>Rate your child's speed* (1=slow, 5=fast)</label>
+                 <select class="browser-default">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                 </select><br>
+
+                  <!-- child Speed -->
+                 <i class="material-icons prefix">directions_run</i>
+                <label>Jersey Size*</label>
+                 <select class="browser-default">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="0">2T</option>
+                    <option value="1">3T</option>
+                    <option value="2">4T</option>
+                    <option value="3">5T</option>
+                    <option value="Youth Small">Youth Small</option>
+                    <option value="Youth medium">Youth Medium</option>
+                    <option value="Youth Large">Youth Large</option>
+                    <option value="Youth XL">   Youth XL</option>
+                    <option value="Adult Small">Adult Small</option>
+                    <option value="Adult Medium">Adult Small</option>
+                    <option value="Adult Large">Adult Large</option>
+                </select><br>
+
+                 <!-- Addition onTshirt -->
+                 <i class="material-icons prefix">add_shopping_cart</i>
+                <label>Would you like your child's LAST NAME added to your child's jersey ($13.50)?*</label>
+                 <select class="browser-default">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+
+                 <!-- Addition onTshirt -->
+                 <i class="material-icons prefix">add_shopping_cart</i>
+                <label>Would you like to purchase a youth Mouth Guard ($5.50)?*</label>
+                 <select class="browser-default">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br>
+            </div>
+         <!-- Switch for mobile notification-->
+              <div class="switch">
+                <label>
+                 Do you want game notification on your Mobile? OFF
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+              </div><br>
+              <!-- Switch for email  -->
+              <div class="switch">
+                <label>
+                  Do you want game notification on your Email ID? OFF
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+              </div><br><br>
+            <center>
+                <button class="btn waves-effect waves-light teal" type="submit" name="action">Ready To Play</button><br><br>
+           </center>
+          
+        </form>
+      </div>
+ 
+    </div>
+    </div>
+    <script type="text/javascript">
+        // for date 
+        $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+  });
+    </script>
+    <script src="assets/js/registration.js"></script>
 </body>
 </html>
