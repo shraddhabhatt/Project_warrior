@@ -1,5 +1,7 @@
 $(document).ready(function(){
-	
+	// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.modal').modal();
+
 	var config = {
 	    apiKey: "AIzaSyBJEf-9pGFWooqFdxd-sLAkozFU-YV369M",
 	    authDomain: "project-weeken-warrior.firebaseapp.com",
@@ -111,16 +113,11 @@ function signup(){
 		});
  }
  $("#connect").on("click", function(){
+ 		
+ 		event.preventDefault();
 
 		console.log("inside connect");
- 		var user = firebase.auth().currentUser;
- 		if(user!= null){
- 			firebase.auth().signOut().then(function() {
-  				// Sign-out successful.
-			}).catch(function(error) {
-  					// An error happened.
-			});
- 		}
+
  		let email_signin = $("#email-signin").val().trim();
 		let password_signin = $("#password-signin").val().trim();
  		firebase.auth().signInWithEmailAndPassword(email_signin, password_signin).catch(function(error) {
@@ -135,13 +132,16 @@ function signup(){
 	  		 console.log("ERRORS :: "+ errorCode);
 			
 			});
+
  		firebase.auth().onAuthStateChanged(function(user) {
   		if (user!=null) {
     		// User is signed in.
-    		console.log("auth changed :: "+user);
+    		console.log("auth changed :: SUCCCCESSSSS "+user);
+    		clearform();
+  			window.location.href = "registration.html";
   		} else {
     		// No user is signed in.
-    		console.log("auth changed NO:: "+user);
+    		console.log("auth changed FAILLLUREEEELOLNO:: "+user);
   		}
 	});
  });
@@ -158,6 +158,7 @@ function signup(){
 			  var user = result.user;
 
 			  console.log("Auth :: "+user);
+			  window.location.href = "registration.html";
 			
 			}).catch(function(error) {
 			  // Handle Errors here.
@@ -184,6 +185,7 @@ function signup(){
   		// The signed-in user info.
   		var user = result.user;
   		console.log("FB Login :: "+user);
+  		window.location.href = "registration.html";
   		// ...
 		}).catch(function(error) {
   		// Handle Errors here.

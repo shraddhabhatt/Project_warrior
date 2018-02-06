@@ -31,7 +31,9 @@ $(document).ready(function(){
 	      childfirstname: "required",
 	      childlastname: "required",
 	      dob: "required",
-	      playdate: "required",
+	      address: "required",
+	      city: "required",
+	      zipcode: "required",
 	      email: {
 	        required: true,
 	        email: true
@@ -50,7 +52,9 @@ $(document).ready(function(){
 	      childfirstname: "Please enter your child's firstname",
 	      childlastname: "Please enter your child's lastname",
 	      dob: "Please select your child's date of birth",
-	      playdate: "Please select the playdate",
+	      address: "Please enter your address",
+	      city: "Please enter your city",
+	      zipcode: "Please enter your zipcode",
 	      phone: {
                 required: "Please enter your phone number",
                 number: "Please enter only numeric value"
@@ -60,7 +64,28 @@ $(document).ready(function(){
 	    // Make sure the form is submitted to the destination defined
 	    // in the "action" attribute of the form when valid
 	    submitHandler: function(form) {
-	    	signup();
-	    }
+	    	registeruser();
+	     }
 	  });
 });
+
+function registeruser(){
+		
+		let firstname = $("#firstName").val().trim();
+		let lastname = $("#lastName").val().trim();
+		let childfirstname = $("#childFirstName").val().trim();
+		let childlastname = $("#childLastName").val().trim();
+		let address = $("#address").val().trim();
+		let city = $("city").val().trim();
+		let zipcode = $("zipcode").val().trim();
+		let phone = $("#phoneNumber").val().trim();
+		let email = $("#email").val().trim();
+		let dob = $("#dateOfBirth").val().trim();
+		let gamelocation = $("#location").val().trim();
+		let agegroup = $("#agegroup").val().trim();
+		let jerseysize = $("#jerseysize").val().trim();
+		let chlidspeed = $("#chlidspeed").val().trim();
+		let jerseyname = $("#jerseyname").val().trim();
+		
+}
+

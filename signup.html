@@ -83,7 +83,7 @@
                 </div>
               </div>
                <center>
-                 <button class="btn waves-effect waves-light teal">Connect</button><br><br>
+                 <button id="connect" class="btn waves-effect waves-light teal">Connect</button><br><br>
                    <a href="">Forgot password ?</a><br>
                </center>
                <!-- connect with fb or google -->
@@ -102,13 +102,13 @@
     <div id="register" class="modal">
       <div class="modal-content">
             <!-- SIGN UP -->
-        <form class="col s12" id="signup-form" method="POST"> 
         <div id="register">
-              <div class="modal-content">
-              <h3>Welcome</h3>
+            <div class="modal-content">
+               <h3>Welcome</h3>
               <!-- input from user -->
-
-              <div class="row">
+              <form class="col s12" id="signup-form" method="POST"> 
+             
+                <div class="row">
                   <div class="input-field col s6">
                      <i class="material-icons prefix">account_circle</i>
                      <input id="first_name" name="firstname" type="text" class="validate">
@@ -148,11 +148,19 @@
                 <center>
                   <button class="btn waves-effect waves-light teal">Submit</button>
               </center>
-          </div>
+              </form>
+            </div>
+          
         </div>
-      </form>
+     </div>
     </div>
-    </div>
-    <script src="assets/js/auth.js"></script>
+   
+    <script type="text/javascript">
+      $(document).ready(function(){
+        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+      $('.modal').modal();
+    });
+    </script>
+     <script src="assets/js/auth.js"></script>
 </body>
 </html>

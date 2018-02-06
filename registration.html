@@ -76,6 +76,9 @@
          <!-- form cointainer -->
           <div class="form-container">
             <h3 class="teal-text">2018 Registration</h3>
+            <div>
+               <a class="waves-effect waves-light btn" >ADD Another Player</a>
+            </div>
             <hr>
             <!-- first row -->
             <div class="row"> 
@@ -91,18 +94,36 @@
                 </div>
               </div>
               <!-- second row -->
+              <div class="row">
+              <div class="input-field col s6">
+                   <i class="material-icons prefix">home</i>
+                   <input id="address" name="address" type="text" class="validate">
+                   <label for="address">Address</label>
+               </div>
+               <div class="input-field col m3">
+                   <!-- <i class="material-icons prefix">phone</i> -->
+                   <input id="city" name="city" type="text" class="validate">
+                   <label for="city"> City </label>
+               </div>
+               <div class="input-field col m3">
+                   <!-- <i class="material-icons prefix">phone</i> -->
+                   <input id="zipcode" name="zipcode" pattern="[0-9]{5}" type="text" class="validate">
+                   <label for="zipcode" data-error="Enter valid zipcode"> Zipcode </label>
+               </div>
+             </div>
+              <!-- third row -->
              <div class="row"> 
               <div class="input-field col s6">
                 <i class="material-icons prefix">email</i>
-                <input id="emailId" name="email" type="email" class="validate">
-                <label for="email">Email Id</label>
-                </div>
-                <div class="input-field col m6">
-                    <i class="material-icons prefix">phone</i>
-                    <input id="phoneNumber" name="phone" type="tel" class="validate">
-                    <label for="phoneNumber"> Contact Number</label>
-                </div>
+                <input id="email" name="email" type="email" class="validate">
+                <label for="email" data-error="Enter valid email address">Email Address</label>
               </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">phone</i>
+                <input id="phoneNumber" name="phone" type="tel" pattern="[0-9]{10}" class="validate">
+                <label for="phoneNumber" data-error="Enter valid phone number"> Contact Number</label>
+              </div>
+            </div>
                <!-- Third row -->
              <div class="row"> 
               <div class="input-field col s6">
@@ -125,21 +146,33 @@
                     <!-- <input id="dateOfBirth" type="date" class="validate" placeholder="DOB"> -->
                     <label for="dateOfBirth">Child : Date Of Birth </label>
                 </div>
-               <div class="input-field col m6">
+                <div class="input-field col m6">
+                  <i class="material-icons prefix">location_city</i>
+                 <select id="location" name="location">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Portsmouth">Portsmouth</option>
+                    <option value="Durham">Durham</option>
+                    <option value="Dover">Dover</option>
+                    <option value="Derry">Derry</option>
+                    <option value="New Market">New Market</option>
+                 </select>
+                 <label>Game Location</label>
+               </div>
+              <!--  <div class="input-field col m6">
                     <i class="material-icons prefix">date_range</i>
                     <input id="playDay" name="playdate" type="text" class="datepicker">
                     <label for="playDay">Select your play Day </label>
-                </div>
+                </div> -->
              </div>
               <!-- Grades=== -->
               <div class="row"> 
               <div class="input-field col m6">
                <i class="material-icons prefix">school</i>
-                <select id="grade" class="required" name="grades">
+                <select id="agegroup" class="required" name="agegroup">
                     <option value="" disabled selected>Choose your option</option>
-                    <option value="0">PreK</option>
-                    <option value="1">Grade 1</option>
-                    <option value="2">Grade 2</option>
+                    <option value="0">Kids Group (5yrs - 10yrs)</option>
+                    <option value="1">Teen Group (11 - 16yrs)</option>
+                    <!-- <option value="2">Grade 2</option>
                     <option value="3">Grade 3</option>
                     <option value="4">Grade 4</option>
                     <option value="5">Grade 5</option>
@@ -149,41 +182,14 @@
                     <option value="9">Grade 9</option>
                     <option value="10">Grade 10</option>
                     <option value="11">Grade 11</option>
-                    <option value="12">Grade 12</option>
+                    <option value="12">Grade 12</option> -->
                   </select>
-                  <label>Grade Level?*</label>
+                  <label>* Age Group </label>
               </div>
-                        
-                <!-- city -->
+                <!-- child jersey size -->       
               <div class="input-field col m6">
-                <i class="material-icons prefix">location_city</i>
-                 <select id="location" class="required" name="location">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="Portsmouth">Portsmouth</option>
-                    <option value="Durham">Durham</option>
-                    <option value="Dover">Dover</option>
-                    <option value="Derry">Derry</option>
-                    <option value="New Market">New Market</option>
-                 </select>
-                 <label>Select City</label>
-               </div>
-              </div>
-                 <!-- child Speed -->
-                 <i class="material-icons prefix">directions_run</i>
-                <label>Rate your child's speed* (1=slow, 5=fast)</label>
-                 <select class="browser-default">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                 </select><br>
-
-                  <!-- child Speed -->
-                 <i class="material-icons prefix">directions_run</i>
-                <label>Jersey Size*</label>
-                 <select class="browser-default">
+                <i class="material-icons prefix">directions_run</i>
+                 <select id="jerseysize">
                     <option value="" disabled selected>Choose your option</option>
                     <option value="0">2T</option>
                     <option value="1">3T</option>
@@ -196,27 +202,36 @@
                     <option value="Adult Small">Adult Small</option>
                     <option value="Adult Medium">Adult Small</option>
                     <option value="Adult Large">Adult Large</option>
-                </select><br>
-
-                 <!-- Addition onTshirt -->
-                 <i class="material-icons prefix">add_shopping_cart</i>
-                <label>Would you like your child's LAST NAME added to your child's jersey ($13.50)?*</label>
-                 <select class="browser-default">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select><br>
-
-                 <!-- Addition onTshirt -->
-                 <i class="material-icons prefix">add_shopping_cart</i>
-                <label>Would you like to purchase a youth Mouth Guard ($5.50)?*</label>
-                 <select class="browser-default">
-                    <option value="" disabled selected>Choose your option</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select><br>
+                </select>
+                <label>Jersey Size*</label>
+              </div>
             </div>
-         <!-- Switch for mobile notification-->
+                 <!-- child Speed -->
+              <div class="row"> 
+              <div class="input-field col m6">
+              <i class="material-icons prefix">directions_run</i>
+                 <select id="chlidspeed">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                 </select>
+                 <label>Rate your child's speed* (1=slow, 5=fast)</label>
+              </div>
+                  <!-- child jersey size -->
+             <div class="input-field col m6">
+               <i class="material-icons prefix">add_shopping_cart</i>
+                 <select id="jerseyname">
+                    <option value="" disabled selected>Choose your option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label>Would you like your child's LAST NAME added to your child's jersey ($13.50)?*</label>
+               </div><br>
+            </div>
+          <!-- Switch for mobile notification-->
               <div class="switch">
                 <label>
                  Do you want game notification on your Mobile? OFF
