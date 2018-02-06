@@ -21,6 +21,10 @@ h5{font-size: 60px;
     animation: mymove 5s infinite;
 
 }
+#optionsForYou:hover{
+    animation: none;
+    
+}
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes mymove {

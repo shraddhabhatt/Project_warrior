@@ -17,6 +17,8 @@ $(document).ready(function(){
 	$('select').material_select();
 
 	$("#registration-form").validate({
+		
+
 		errorClass: 'invalid',
              errorPlacement: function (error, element) {
         $(element)
@@ -64,6 +66,7 @@ $(document).ready(function(){
 	    // Make sure the form is submitted to the destination defined
 	    // in the "action" attribute of the form when valid
 	    submitHandler: function(form) {
+	    	event.preventDefault();
 	    	registeruser();
 	     }
 	  });
@@ -87,5 +90,16 @@ function registeruser(){
 		let chlidspeed = $("#chlidspeed").val().trim();
 		let jerseyname = $("#jerseyname").val().trim();
 		
+		firebase.database().ref('users/'+username).set({
+   			childfirstname: childfirstname,
+   			childlastname: childlastname,
+   			address: address,
+   			city: city
+  		});
+
+		var userId = firebase.auth().currentUser;
+  		firebase.database().ref('users').once('value').then(function(snapshot){
+  			console.log(snapshot.val());
+  		});
 }
 
